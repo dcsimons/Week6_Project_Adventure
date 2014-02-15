@@ -6,11 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-adv = Adventure.create!(:title => "David's Test Adventure",
-	:author => "David")
+library = Library.create!(url: "/adventures")
+
+name = "David"
+
+adv = library.adventures.create!(:title => "#{name}'s Test Adventure",
+	:author => name)
 adv.pages.create!(:name => "start",
 	:text => "This is a great text adventure which is beginning right now!  I can't wait to [[see the end|end]]")
 adv.pages.create!(:name => "end",
 	:text => "Wow that adventure was amazing!")
-
-adv.create_library(url: "http://www.iuhoosiers.com")

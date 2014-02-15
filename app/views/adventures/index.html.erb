@@ -1,0 +1,8 @@
+<h1>Adventure Index</h1>
+
+<% @adventures.each do |a| %>
+	<div>
+		<h3>Title: <%= a.title %></h3>
+		<p>Author: <%= a.author %></p>
+	</div>
+<% end %>
