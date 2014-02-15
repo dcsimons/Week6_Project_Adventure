@@ -1,2 +1,7 @@
-<h1>Libraries#index</h1>
-<p>Find me in app/views/libraries/index.html.erb</p>
+<h1>Library Index</h1>
+
+<% @libraries.each do |l| %>
+	<div>
+		<%= link_to l.url, l.url %>
+	</div>
+<% end %>
