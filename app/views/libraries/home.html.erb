@@ -1,0 +1,10 @@
+<h1>Welcome to My Library of Adventure Stories</h1>
+<h3>Click <%= link_to "Here", libraries_path %> to see my collection of adventures!</h3>
+
+<h4>Want to search for another adventure library?</h4>
+
+<%= form_for :library, url: "/libraries" do |f| %>
+	<%= f.text_field :name, placeholder: "Library Name" %><br />
+	<%= f.text_field :url, placeholder: "Paste URL to search for library" %><br />
+	<%= f.submit "Search to Add Library" %>
+<% end %>

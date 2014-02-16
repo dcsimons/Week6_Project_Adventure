@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-library = Library.create!(url: "/adventures")
-
 name = "David"
+
+library = Library.create!(name: "#{name}'s Library", url: "/adventures")
 
 adv = library.adventures.create!(:title => "#{name}'s Test Adventure",
 	:author => name)

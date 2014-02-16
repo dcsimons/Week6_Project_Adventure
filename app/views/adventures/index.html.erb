@@ -1,8 +1,9 @@
-<h1>Adventure Index</h1>
+<h1><%= @library.name %></h1>
+<h2>Adventure Index</h2>
 
-<% @adventures.each do |a| %>
+<% @library.adventures.each do |a| %>
 	<div>
-		<h3>Title: <%= a.title %></h3>
+		<h3>Title: <%= link_to a.title, adventure_page_path(a, a.pages.find_by_name("start")) %></h3>
 		<p>Author: <%= a.author %></p>
 	</div>
 <% end %>
