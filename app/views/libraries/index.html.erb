@@ -1,7 +1,9 @@
-<h1>Libraries</h1>
+<div class="container main-display">
+	<h1>Libraries</h1>
 
-<% @libraries.each do |l| %>
-	<div>
-		<%= link_to l.name, l.url %>
-	</div>
-<% end %>
+	<% @libraries.each do |l| %>
+		<h3>
+			<%= link_to l.name, l.url %>
+		</h3>
+	<% end %>
+</div>

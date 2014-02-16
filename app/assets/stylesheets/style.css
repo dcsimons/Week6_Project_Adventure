@@ -1,3 +1,35 @@
-.inline {
+body {
+	padding-top: 40px;
+}
+
+.nav-btn {
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+.main-display {
+	border: 4px solid black;
+	border-radius: 20px;
+	max-width: 480px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px 5px 60px 5px;
+}
+
+.input-field {
 	display: inline-block;
+	width: 400px;
+	height: 35px;
+	padding: 8px;
+	margin: 10px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	font-size: 12px;
+}
+
+.lib-search-btn {
+	display: inline-block;
+	width: 400px;
+	margin: 10px;
 }

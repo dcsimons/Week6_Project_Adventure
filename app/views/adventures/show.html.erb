@@ -1,4 +1,6 @@
-<h2><%= link_to @adventure.title, adventure_page_path(@adventure, @adventure.pages.find_by_name("start")) %></h2>
-<h4>By <%= @adventure.author %></h4>
+<div class="container main-display">
+	<h2><%= link_to @adventure.title, adventure_page_path(@adventure, @adventure.pages.find_by_name("start")) %></h2>
+	<h4>By <%= @adventure.author %></h4>
 
-<%= button_to "Start Adventure", adventure_page_path(@adventure, @adventure.pages.find_by_name("start")), method: :get, class: "btn btn-success" %>
+	<%= button_to "Start Adventure", adventure_page_path(@adventure, @adventure.pages.find_by_name("start")), method: :get, class: "btn btn-success" %>
+</div>

@@ -2,9 +2,12 @@ class LibraryWorker
 	include Sidekiq::Worker
 
 	def perform(lib_hash)
-		if Library.find_by_url(lib_hash[:url]).nil?
-      url = lib_hash[:url]+"/adventures.json"
-      response = Typhoeus.get(url)
+
+		url = correct_url(lib_hash["url"])
+
+		if Library.find_by_url(url).nil?
+      json_url = url + "/adventures.json"
+      response = Typhoeus.get(json_url)
       result = JSON.parse(response.body)
       library = Library.create(name: result["name"], url: result["url"])
       
@@ -33,6 +36,14 @@ class LibraryWorker
       adv["pages"].each do |page|
         adventure.pages.create(name: page["name"], text: page["text"] )
       end
+    end
+  end
+
+  def correct_url(url)
+    if url.include? ".com"
+      return url.split(".com").first + ".com/"
+    else
+      raise StandardError
     end
   end
 
