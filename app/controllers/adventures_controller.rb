@@ -20,6 +20,7 @@ class AdventuresController < ApplicationController
   end
 
   def show
+  	@adventure = Adventure.find(params[:id])
   end
 
   def edit
