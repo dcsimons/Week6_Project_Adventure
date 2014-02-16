@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe '/adventures' do
   before(:each) do 
-    @local_adventure = Adventure.create!(:title => "test",
+    @library = Library.create(url: "www.localhostlibrary.com")
+    @local_adventure = @library.adventures.create!(:title => "test",
                                         :author => "Test author")
     @local_adventure.pages.create!(:name => "start", :text => "cool story bro")
 
@@ -12,8 +13,10 @@ describe '/adventures' do
     @foreign_adventure.pages.create(:name => "start", :text => "Chouette histoire, mec.")
 
   end
-	describe 'GET with JSON' do
+  describe 'GET with JSON' do
     before(:each) do 
+      mock_model('Library')
+      allow(Library).to receive(:find_by_url).and_return(@library)
       get '/adventures.json'
       @result = JSON.parse(response.body)
     end
@@ -25,7 +28,7 @@ describe '/adventures' do
       adv["title"].should == @local_adventure.title
       adv["created_at"].should_not == nil
       adv["updated_at"].should_not == nil
-      adv["id"].should == nil
+      adv["id"].should == @local_adventure.id
       adv["author"].should == @local_adventure.author
     end
 
@@ -66,7 +69,7 @@ describe '/libraries' do
       it 'returns a list of known libraries' do
            get '/libraries.json'
            result = JSON.parse(response.body)
-           result["libraries"].first["url"].should == @library.url
+           result['libraries'].first["url"].should == @library.url
       end
     end
 end

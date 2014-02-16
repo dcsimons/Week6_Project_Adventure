@@ -24,7 +24,7 @@ class LibrariesController < ApplicationController
 
   def create
   	library_params = params.require(:library).permit(:name, :url)
-  	
+  	LibraryWorker.perform_async(library_params)
   	redirect_to libraries_path
   end
 
