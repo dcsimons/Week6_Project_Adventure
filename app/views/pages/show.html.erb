@@ -1,3 +1,4 @@
+<%= button_to "Back to #{@adventure.title} Start", adventure_page_path(@adventure, @adventure.pages.find_by_name("start")), method: :get, class: "btn btn-default" %>
 <h1><%= @page.name %></h1>
 
 <div>
