@@ -1,5 +1,13 @@
 body {
 	padding-top: 40px;
+	background: url(http://i.imgur.com/7KFLJlY.jpg?1) no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
 }
 
 .nav-btn {
@@ -9,6 +17,7 @@ body {
 }
 
 .main-display {
+	background-color: white;
 	border: 4px solid black;
 	border-radius: 20px;
 	max-width: 480px;

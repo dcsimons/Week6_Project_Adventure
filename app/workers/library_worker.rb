@@ -1,31 +1,31 @@
 class LibraryWorker
-	include Sidekiq::Worker
+  include Sidekiq::Worker
 
-	def perform(lib_hash)
+  def perform(library_hash)
 
-		url = correct_url(lib_hash["url"])
+    url = correct_url(library_hash["url"])
 
-		if Library.find_by_url(url).nil?
-      json_url = url + "/adventures.json"
+    if Library.find_by_url(url).nil?
+      json_url = url +"adventures.json"
       response = Typhoeus.get(json_url)
       result = JSON.parse(response.body)
-      library = Library.create(name: result["name"], url: result["url"])
+      library = Library.create(name: library_hash["name"], url: url )
       
       create_adventures_with_pages(library, result['adventures'])
     end
 
-    check_other_libraries(lib_hash)
+    check_other_libraries(url)
 
   end
 
-  def check_other_libraries(library)
-    url = library[:url] + "/libraries.json"
-    response = Typhoeus.get(url)
+  def check_other_libraries(library_url)
+    json_url = library_url + "libraries.json"
+    response = Typhoeus.get(json_url)
     result = JSON.parse(response.body)
 
     result["libraries"].each do |lib|
       if Library.find_by_url(lib["url"]).nil?
-        LibraryWorker.perform_async({name: lib["name"], url: lib["url"] })
+        LibraryWorker.perform_async({"name" => lib["name"], "url" => lib["url"] })
       end
     end
   end
