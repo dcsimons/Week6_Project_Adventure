@@ -10,7 +10,7 @@ name = "David"
 
 library = Library.create!(name: "#{name}'s Library", url: "/adventures")
 
-adv = library.adventures.create!(:title => "#{name}'s Test Adventure",
+adv = library.adventures.create!(:title => "There and Back Again",
 	:author => name)
 adv.pages.create!(:name => "start",
 	:text => "This is a great text adventure which is beginning right now!  I can't wait to [[see the end|end]]")
