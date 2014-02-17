@@ -2,8 +2,26 @@
 	<h1>Libraries</h1>
 
 	<% @libraries.each do |l| %>
-		<h3>
-			<%= link_to l.name, l.url %>
-		</h3>
+		<h3 class="lib-title"><%= link_to l.name, l.url %></h3>
+		<table class="table table-striped">
+			<colgroup>
+				<col class="col-md-9"/>
+				<col class="col-md-3"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<td class="lib-table-title"><h4>Title</h4></td>
+					<td class="lib-table-author"><h4>Author</h4></td>
+				</tr>
+			</thead>
+			<tbody>
+				<% l.adventures.each do |a| %>
+					<tr>
+						<td class="lib-table-title"><%= link_to a.title, adventure_page_path(a, a.pages.find_by_name("start")) %></td>
+						<td class="lib-table-author"><%= a.author %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
 	<% end %>
 </div>
